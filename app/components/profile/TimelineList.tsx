@@ -2,8 +2,8 @@
 
 import { ExternalLink } from 'lucide-react';
 import { memo } from 'react';
+import { ExpandableCardBody } from './ExpandableCardBody';
 import {
-  CardBody,
   CardMeta,
   CardTitle,
   InfoCard,
@@ -20,15 +20,18 @@ function TimelineListComponent({ items }: { items: Entry[] }) {
     <ul className="grid gap-4">
       {items.map((item, index) => {
         const title = entryTitle(item);
+        const description = item.summary ?? item.description;
 
         return (
           <li key={`${title}-${index}`}>
             <InfoCard index={index}>
-              <div className="flex items-start justify-between gap-3">
-                <div className="timeline-title-column shrink-0">
+              <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between md:gap-3">
+                <div className="timeline-title-column min-w-0 shrink-0">
                   <CardTitle>{title}</CardTitle>
                 </div>
-                <CardMeta>{formatDateRange(item.startDate, item.endDate)}</CardMeta>
+                <CardMeta className="w-fit shrink-0">
+                  {formatDateRange(item.startDate, item.endDate)}
+                </CardMeta>
               </div>
               {((item.position ?? item.studyType) || item.location) && (
                 <p className="mt-2 font-mono text-xs text-accent/90">
@@ -37,9 +40,7 @@ function TimelineListComponent({ items }: { items: Entry[] }) {
                     .join(' · ')}
                 </p>
               )}
-              {(item.summary ?? item.description) && (
-                <CardBody>{item.summary ?? item.description}</CardBody>
-              )}
+              {description && <ExpandableCardBody text={description} />}
               {item.url && (
                 <a
                   href={item.url}

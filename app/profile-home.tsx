@@ -2,11 +2,7 @@
 
 import { useMemo, useRef } from 'react';
 import { HeroSection } from './components/profile/HeroSection';
-import {
-  CardBody,
-  CardTitle,
-  InfoCard,
-} from './components/profile/InfoCard';
+import { CardBody, CardTitle, InfoCard } from './components/profile/InfoCard';
 import { MarqueeRow } from './components/profile/MarqueeRow';
 import { ParallaxBackground } from './components/profile/ParallaxBackground';
 import { PageEndCap, SectionPanel } from './components/profile/SectionPanel';

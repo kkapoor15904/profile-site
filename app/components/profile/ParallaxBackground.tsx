@@ -13,9 +13,9 @@ export function ParallaxBackground({
     offset: ['start start', 'end end'],
   });
 
-  const gridY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
-  const glowPrimaryY = useTransform(scrollYProgress, [0, 1], ['-5%', '25%']);
-  const glowSecondaryY = useTransform(scrollYProgress, [0, 1], ['10%', '-12%']);
+  const gridY = useTransform(scrollYProgress, [0, 1], ['18%', '0%']);
+  const glowPrimaryY = useTransform(scrollYProgress, [0, 1], ['25%', '-5%']);
+  const glowSecondaryY = useTransform(scrollYProgress, [0, 1], ['-12%', '10%']);
   const glowOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.45, 0.35, 0.22]);
 
   return (

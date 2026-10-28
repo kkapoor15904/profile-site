@@ -15,13 +15,7 @@
 }
 
 .timeline-title-column {
-  width: min(calc(100% - 7.25rem), 100%);
-}
-
-@media (min-width: 640px) {
-  .timeline-title-column {
-    width: min(28rem, calc(100% - 8rem));
-  }
+  width: 100%;
 }
 
 @media (min-width: 768px) {
