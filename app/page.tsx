@@ -1,19 +1,27 @@
-import { ProfileHome } from "./profile-home";
+import type { Metadata } from 'next';
+import { ProfileHome } from './profile-home';
+import {
+  buildPersonJsonLd,
+  buildProfileMetadata,
+  getProfile,
+} from './lib/profile-data';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const profile = await getProfile();
+  return buildProfileMetadata(profile);
+}
 
 export default async function HomePage() {
-  const response = await fetch(
-    "https://raw.githubusercontent.com/kkapoor15904/profile-data/refs/heads/main/resume.json",
-    {
-      cache: "force-cache",
-      next: { tags: ["profile"] },
-    },
+  const profile = await getProfile();
+  const jsonLd = buildPersonJsonLd(profile);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ProfileHome profile={profile} />
+    </>
   );
-
-  if (!response.ok) {
-    throw new Error("Failed to load profile data");
-  }
-
-  const profile = await response.json();
-
-  return <ProfileHome profile={profile} />;
 }

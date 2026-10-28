@@ -1,5 +1,3 @@
-import type { ReactNode } from 'react';
-
 export type SocialProfile = {
   network: string;
   username?: string;
@@ -51,13 +49,4 @@ export type ProfileData = {
   skills?: Skill[];
   certificates?: Certificate[];
   languages?: Language[];
-};
-
-export type StripTone = 'neutral' | 'cyan' | 'indigo';
-
-export type StripItem = {
-  id: string;
-  title: string;
-  tone: StripTone;
-  content: ReactNode;
 };
